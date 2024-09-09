@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@xvrjhjw$=j+(2qx^9&k35xp44qhbbv9g=503)l%dmj8)hy$*3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
 ]
 
 ROOT_URLCONF = 'Accessories.urls'
@@ -131,7 +132,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
 
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR,'myapp', 'static')
 
 ]
 
