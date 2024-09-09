@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-
+import dj_database_url
 
 
 
@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-@xvrjhjw$=j+(2qx^9&k35xp44qhbbv9g=503)l%dmj8)hy$*3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'myapp.CustomUser'
 # Application definition
@@ -89,6 +89,11 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': dj_database_url.parse(
+        'postgresql://bike_accessories_user:huP0N1VdUgqkP7WWzQfUVZ212CUH2Tuc@dpg-crf8v85svqrc73f5e3ag-a.singapore-postgres.render.com/bike_accessories'
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
