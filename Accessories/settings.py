@@ -90,9 +90,7 @@ DATABASES = {
 }
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        'postgresql://bike_accessories_user:huP0N1VdUgqkP7WWzQfUVZ212CUH2Tuc@dpg-crf8v85svqrc73f5e3ag-a.singapore-postgres.render.com/bike_accessories'
-    )
+    'default': dj_database_url.parse('postgresql://bike_accessories_user:huP0N1VdUgqkP7WWzQfUVZ212CUH2Tuc@dpg-crf8v85svqrc73f5e3ag-a.singapore-postgres.render.com/bike_accessories')
 }
 
 # Password validation
