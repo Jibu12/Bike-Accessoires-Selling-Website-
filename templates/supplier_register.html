@@ -1,0 +1,80 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><center><strong>SELER SIGN UP</strong><center></h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Username -->
+                        <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                            {% for error in form.username.errors %}
+                                <div class="help-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <!-- Company Name -->
+                        <div class="form-group{% if form.company_name.errors %} has-error{% endif %}">
+                            <label for="company_name">Company Name</label>
+                            <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter your company name" required>
+                            {% for error in form.company_name.errors %}
+                                <div class="help-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <!-- Location -->
+                        <div class="form-group{% if form.location.errors %} has-error{% endif %}">
+                            <label for="location">Location</label>
+                            <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" required>
+                            {% for error in form.location.errors %}
+                                <div class="help-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <!-- Email -->
+                        <div class="form-group{% if form.email.errors %} has-error{% endif %}">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            {% for error in form.email.errors %}
+                                <div class="help-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <!-- Phone Number -->
+                        <div class="form-group{% if form.phone_number.errors %} has-error{% endif %}">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="Enter your phone number" required>
+                            {% for error in form.phone_number.errors %}
+                                <div class="help-block">{{ error }}</div>
+                            {% endfor %}
+                            <small id="phoneHelp" class="form-text text-muted">Format: 1234567890</small>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                            {% for error in form.password.errors %}
+                                <div class="help-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <!-- Confirm Password -->
+                        <div class="form-group{% if form.confirm_password.errors %} has-error{% endif %}">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+                            {% for error in form.confirm_password.errors %}
+                                <div class="help-block">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

@@ -1,0 +1,27 @@
+{% extends "customer_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5" style="color: white;">
+  <h1 class="text-center text-success mb-4">Order Confirmation</h1>
+  <div class="alert alert-success" role="alert">
+    Your order has been placed successfully!
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Order Details</h2>
+      <hr>
+      <p><strong>Order ID:</strong> {{ order.order_id }}</p>
+      <p><strong>Total Price:</strong> Rs. {{ order.total_price }}</p>
+      <p><strong>Delivery Address:</strong> {{ order.delivery_address }}</p>
+    </div>
+    <div class="col-md-6">
+      <!-- Removed Invoice Section -->
+      <h2>Continue Shopping</h2>
+      <hr>
+      <p>Thank you for your order! You can continue shopping by clicking the button below:</p>
+      <a href="{% url 'customer_home' %}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

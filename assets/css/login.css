@@ -1,0 +1,5 @@
+.login-box {
+    background-image: url('/static/images/login.jpg'); 
+    background-size: cover;
+    background-position: center;
+}

@@ -1,0 +1,78 @@
+{% extends "customer_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center text-danger mb-4">Checkout</h1>
+  <div class="row">
+    <!-- Product Details -->
+    <div class="col-md-8">
+      <h2>Product Details</h2>
+      <hr>
+      <div class="product-details">
+        {% for item in cart_items %}
+        <div class="product-item" style="color: #ffffff;">
+          <div class="row">
+            <div class="col-md-3">
+              <img src="{{ item.product.product_image1.url }}" alt="{{ item.product.product_name }}" class="img-fluid rounded" style="max-width: 100px;">
+            </div>
+            <div class="col-md-6">
+              <h4>{{ item.product.product_name }}</h4>
+              <p>Price: Rs.{{ item.product.selling_price }}</p>
+              <p>Quantity: {{ item.quantity }}</p>
+              <p>Subtotal: Rs. {{ item.sub_total }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- Delivery Address Form -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body bg-transparent">
+          <h2 class="card-title mb-4">Delivery Address</h2>
+          <form method="post" action="{% url 'customer_checkout' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="text" class="form-control{% if form.phone.errors %} is-invalid{% endif %}" id="phone" name="phone" required>
+              {% for error in form.phone.errors %}
+                  <div class="invalid-feedback">{{ error }}</div>
+              {% endfor %}
+          </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" class="form-control" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input type="text" class="form-control" id="state" name="state" required>
+            </div>
+            <div class="form-group">
+              <label for="pincode">Pincode</label>
+              <input type="text" class="form-control{% if form.pincode.errors %} is-invalid{% endif %}" id="pincode" name="pincode" required>
+              {% for error in form.pincode.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+              {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

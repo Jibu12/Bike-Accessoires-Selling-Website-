@@ -1,0 +1,24 @@
+{% extends "supplier_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center text-danger mb-4">Change Order Status</h1>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form method="post" action="">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="new_status">New Status:</label>
+          <select class="form-control" id="new_status" name="new_status">
+            <option value="Pending">Pending</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Delivered">Delivered</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Status</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

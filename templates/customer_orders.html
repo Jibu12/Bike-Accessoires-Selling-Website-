@@ -1,0 +1,36 @@
+{% extends "customer_base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4 mb-4">Orders for Each Product</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered" style="color: white;">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Order ID</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Unit Price</th>
+                        <th>Expected Delivery Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        {% for order_item in product.orderitem_set.all %}
+                            <tr>
+                                <td>{{ product.product_name }}</td>
+                                <td>{{ order_item.order.order_id }}</td>
+                                <td>{{ order_item.quantity }}</td>
+                                <td>{{ order_item.item_status }}</td>
+                                <td>{{ order_item.unit_price }}</td>
+                                <td>{{ order_item.expected_delivery_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

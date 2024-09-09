@@ -1,0 +1,27 @@
+{% extends "supplier_base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .list-group-item {
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+        color: #495057;
+    }
+    .list-group-item:hover {
+        background-color: #e9ecef;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2 class="text-center mb-4" style="color: white;">Category List</h2>
+            <div class="list-group">
+                {% for category in categories %}
+                <a href="#" class="list-group-item list-group-item-action">{{ category.category_name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+{% load static %}
+
+{% block content %}
+
+
+<section style="background-color: #eee;">
+    <div class="text-center container py-5">
+      <h4 class="mt-4 mb-5"><strong></strong></h4>
+  
+      <div class="row">
+        {% for product in products %}
+        <div class="col-lg-4 col-md-12 mb-3">
+          <div class="card h-100">
+            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                <a href="{% url 'customer_login' %}">
+              <img src="{{ product.product_image1.url }}" class="w-100" style="height: 200px; object-fit: cover;" />  
+              </a>
+            </div>
+            <div class="card-body" style="height: 160px;">
+              <a href="{% url 'customer_login' %}" class="text-reset">
+                <h5 class="card-title mb-2">{{ product.product_name }}</h5>
+              </a>
+              <a href="{% url 'customer_login' %}" class="text-reset">
+                <p>{{ product.category }}</p>
+              </a>
+              <h6 class="mb-2">
+                {% if product.discount_percentage %}
+                  <span class="badge bg-danger ms-2">-{{ product.discount_percentage }}%</span>
+                {% endif %}
+                <s>{{ product.original_price }}</s><strong class="ms-2 text-danger">{{ product.selling_price }}</strong>
+              </h6>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,249 @@
+{% load static %}
+<html lang="en">
+   <head>
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Site metas -->
+   <title>Eflyer</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'temp/css/bootstrap.min.css' %}">
+   <!-- Style CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'temp/css/style.css' %}">
+   <!-- Responsive CSS -->
+   <link rel="stylesheet" href="{% static 'temp/css/responsive.css' %}">
+   <!-- Favicon -->
+   <link rel="icon" href="{% static 'temp/images/fevicon.png" type="temp/image/gif' %}">
+   <!-- Scrollbar Custom CSS -->
+   <link rel="stylesheet" href="{% static 'temp/css/jquery.mCustomScrollbar.min.css' %}">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <!-- Fonts -->
+   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+   <!-- Owl Carousel -->
+   <link rel="stylesheet" href="{% static 'temp/css/owl.carousel.min.css' %}">
+   <link rel="stylesheet" href="{% static 'temp/css/owl.theme.default.min.css' %}">
+   <!-- FancyBox -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+   <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+   <!-- Custom Styles -->
+   <style>
+      .categories {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          display: flex; /* Use flexbox to arrange items horizontally */
+          flex-wrap: wrap; /* Allow wrapping to multiple lines */
+      }
+  
+      .category {
+          margin-right: 20px; /* Adjust spacing between categories */
+          margin-left: 30px; /* Move categories 10px to the left */
+          position: relative; /* Needed for subcategories */
+      }
+  
+      .subcategory {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: #f9f9f9;
+          padding: 5px;
+          border: 1px solid #ccc;
+          z-index: 1;
+      }
+  
+      .category:hover .subcategory {
+          display: block; /* Display subcategories when hovering over a category */
+      }
+  </style>
+
+      {% block styles %}{% endblock %}
+   </head>
+   <body>
+      <!-- banner bg main start -->
+      <div class="banner_bg_main">
+         <!-- header top section start -->
+         <div class="container">
+            <div class="header_section_top">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ul class="categories" style="color: white;">
+                        {% for category in categories %}
+                            <li class="category"><a href="{% url 'subcategory_page' category.id %}">{{ category.category_name }}</li>
+                        {% endfor %}
+                    </ul>
+                    </ul>
+                    </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- header top section start -->
+         <!-- logo section start -->
+         {% comment %} <div class="logo_section">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="logo"><a href="index.html"><img src="{% static 'temp/images/logo.png' %}"></a></div>
+                  </div>
+               </div>
+            </div>
+         </div> {% endcomment %}
+         <!-- logo section end -->
+         <!-- header section start -->
+         <a href="{% url 'customer_home' %}"><img src="{% static 'temp/images/FxB_logo.png' %}" style="width: 200px; height: auto; float: left;"></a>
+         <div class="header_section">
+            <div class="container">
+               <div class="containt_main">
+                  <div id="mySidenav" class="sidenav" style="color: white;">
+                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                     <p><strong><center>BIKES</center></strong></p>
+                     {% comment %} <ul class="list-group">
+                        {% for name in bike_names %}
+                            {% if name %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'bike_product_list' name %}">{{ bike_name }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul> {% endcomment %}
+                    
+                  </div>
+                  <span class="toggle_icon" onclick="openNav()"><img src="{% static 'temp/images/toggle-icon.png' %}"></span>
+                  
+                 
+                  <div class="main">
+                     <!-- Another variation with a button -->
+                     <form method="GET" action="{% url 'customer_search_products' %}">
+                        <div class="input-group">
+                            <input type="text" name="product_name" class="form-control" placeholder="Search products">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="submit" style="background-color: #f26522; border-color:#f26522 ">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+                  <div class="header_box">
+                     <div class="login_menu">
+                        <ul>
+                           <li>
+                              <a href="{% url 'customer_profile' %}">
+                                  <i class="fa fa-user" aria-hidden="true"></i>
+                                  <span class="padding_10">Profile</span>
+                              </a>
+                          </li>
+                          
+                           <li><a href="{% url 'customer_cart_view' %}">
+                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                              <span class="padding_10">Cart</span></a>
+                           </li>
+                        
+                          <li>
+                           <a href="{% url 'customer_orders' %}">
+                              <i class="fa fa-list-alt" aria-hidden="true"></i> <!-- Orders Icon -->
+                              <span class="padding_10">My Orders</span>
+                          </a>
+                  
+                       </li>
+                       <li>
+                        <a href="{% url 'customer_logout' %}">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i> <!-- Logout Icon -->
+                            <span class="padding_10">Logout</span>
+                        </a>
+                    </li>
+                          
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- header section end -->
+         <!-- banner section start -->
+         <div class="banner_section layout_padding">
+            <div class="container">
+               <div id="my_slider" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                     
+
+
+                    
+                    {% block content %}
+
+                    {% endblock content %} 
+                    
+
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+         <!-- banner section end -->
+      </div>
+      <!-- banner bg main end -->
+      
+ 
+      <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="footer_logo"><img src="{% static 'temp/images/FxB_transparent.png' %}" style="width: 200px; height: auto;"></div>
+            <div class="footer_menu">
+               <ul>
+                  <li><a href="#"></a></li>
+                  <li><a href="#"></a></li>
+                  <li><a href="#"></a></li>
+                  <li><a href="#"></a></li>
+                  <li><a href="#"></a></li>
+               </ul>
+            </div>
+            <div class="location_main">Help Line  Number : <a href="#">+91 9207399826</a></div>
+         </div>
+      </div>
+      <!-- footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <p class="copyright_text">© 2020 All Rights Reserved. Design by <a href="https://html.design">FX Bikers</a></p>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      
+      <script src="{% static 'temp/js/jquery.min.js' %}"></script>
+      <script src="{% static 'temp/js/popper.min.js' %}"></script>
+      <script src="{% static 'temp/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'temp/js/jquery-3.0.0.min.js' %}"></script>
+      <script src="{% static 'temp/js/plugin.js' %}"></script>
+      <!-- Sidebar -->
+      <script src="{% static 'temp/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+      <script src="{% static 'temp/js/custom.js' %}"></script>
+      <!-- Custom Scripts -->
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.0/js/bootstrap.bundle.min.js">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-LC2wY4cYd02Kpg6Q6HHDqcWFqF+L2we6FX3fARSyLb6pWIqNXFk2T6R5BYg8pXKO" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js" integrity="sha384-M1eBXdzhkSUpOy8gV6PvZa4yJs6yz75+UeqR6Fs/I3DI+8xukB1tn3IT8JZFYQxv" crossorigin="anonymous"></script>
+      <!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+   function openNav() {
+     document.getElementById("mySidenav").style.width = "250px";
+   }
+   
+   function closeNav() {
+     document.getElementById("mySidenav").style.width = "0";
+   }
+</script>
+   </body>
+</html>

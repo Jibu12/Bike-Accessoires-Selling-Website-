@@ -1,0 +1,10 @@
+{% extends "supplier_base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>Product Deleted</h2>
+<p>The product has been successfully deleted.</p>
+<a href="{% url 'supplier_product_list' %}" class="btn btn-primary">Back to Product List</a>
+
+{% endblock content %}

@@ -1,0 +1,112 @@
+{% extends "supplier_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 bg-transparent text-white">
+                <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{{ product.product_image1.url }}" class="d-block w-100" alt="Product Image 1" style="object-fit: contain; height: 400px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{{ product.product_image2.url }}" class="d-block w-100" alt="Product Image 2" style="object-fit: contain; height: 400px;">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden"></span>
+                    </button>
+                </div>
+                <div class="card-body text-white">
+                    <h4 class="card-title text-center text-white">{{ product.product_name }}</h4>
+                    <hr class="bg-light">
+                    <div class="container">
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Company Name:</strong></div>
+                            <div class="col-6">{{ product.company_name }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Bike Name:</strong></div>
+                            <div class="col-6">{{ product.bike_name }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Description:</strong></div>
+                            <div class="col-6">{{ product.description }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Selling Price:</strong></div>
+                            <div class="col-6">${{ product.selling_price }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Original Price:</strong></div>
+                            <div class="col-6">${{ product.original_price }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Stock Quantity:</strong></div>
+                            <div class="col-6">{{ product.stock_quantity }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Reorder Level:</strong></div>
+                            <div class="col-6">{{ product.reorder_level }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Product Size:</strong></div>
+                            <div class="col-6">{{ product.product_size }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Availability:</strong></div>
+                            <div class="col-6">{% if product.availability %} Available {% else %} Not Available {% endif %}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Supplier:</strong></div>
+                            <div class="col-6">{{ product.supplier }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Category:</strong></div>
+                            <div class="col-6">{{ product.subcategory.category }}</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6"><strong>Subcategory:</strong></div>
+                            <div class="col-6">{{ product.subcategory.subcategory_name }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+    .card {
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1); /* Transparent background */
+    }
+    .card-body {
+        background: rgba(0, 0, 0, 0.6); /* Semi-transparent background for the card body */
+    }
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: black;
+        border-radius: 50%;
+    }
+    .text-white {
+        color: #fff !important; /* Ensures text is white */
+    }
+    .bg-light {
+        background-color: rgba(255, 255, 255, 0.5) !important; /* Light semi-transparent hr */
+    }
+</style>
+
+{% endblock content %}

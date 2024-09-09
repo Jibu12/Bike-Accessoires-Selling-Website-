@@ -1,0 +1,29 @@
+{% extends "supplier_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2 class="text-center mb-4" style="color: white;">Subcategory List</h2>
+            <ul class="list-group">
+                {% for subcategory in subcategories %}
+                <li class="list-group-item">{{ subcategory.subcategory_name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<style>
+    .list-group-item {
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+        color: #495057;
+        border-radius: 8px;
+        margin-bottom: 5px;
+    }
+    .list-group-item:hover {
+        background-color: #e9ecef;
+    }
+</style>    
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends "customer_base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5 text-white">
+    <h1 class="text-center text-danger mb-4">Shopping Cart</h1>
+    {% if cart_items %}
+      <table class="table text-white">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price per Unit</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+            <tr>
+              <td><img src="{{ item.product.product_image1.url }}" alt="{{ item.product.product_name }}" class="img-fluid rounded" style="max-width: 50px;"></td>
+              <td>{{ item.product.product_name }}</td>
+              <td>
+                {% if item.product.stock_quantity > 0 %}
+                  <form method="post" action="{% url 'decrease_quantity' item.cart_item_id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">-</button>
+                  </form>
+                  <span>{{ item.quantity }}</span>
+                  <form method="post" action="{% url 'increase_quantity' item.cart_item_id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-secondary">+</button>
+                  </form>
+                {% else %}
+                  <span class="text-danger">Out of Stock</span>
+                {% endif %}
+              </td>
+              <td>Rs{{ item.product.selling_price }}</td>
+              <td>Rs{{ item.sub_total }}</td>
+              <td><a href="{% url 'remove_from_cart' item.cart_item_id %}" class="btn btn-sm btn-danger">Remove</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="text-right">Total Price: Rs. {{ total_price }}</p>
+
+      <!-- Checkout and Continue Shopping Buttons -->
+      <div class="d-flex justify-content-between mt-3">
+        <a href="{% url 'customer_home' %}" class="btn btn-secondary">Continue Shopping</a>
+        <a href="{% url 'customer_checkout' %}" class="btn btn-primary">Checkout</a>
+        
+      </div>
+    {% else %}
+      <p>Your shopping cart is empty.</p>
+    {% endif %}
+  </div>
+{% endblock content %}

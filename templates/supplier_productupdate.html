@@ -1,0 +1,64 @@
+{% extends "supplier_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="text-center text-primary mb-4">Update Product</h2>
+
+            <!-- Display form for updating product details -->
+            <div class="card shadow-sm p-4 mb-5 bg-white rounded">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg mt-3">Update</button>
+                    </div>
+                </form>
+            </div>
+
+            <hr>
+
+            <!-- Display all product details -->
+            <h2 class="text-center text-secondary mb-4">Product Details</h2>
+            <div class="card shadow-sm p-4 bg-light rounded">
+                <ul class="list-group list-group-flush">
+                    {% for key, value in all_product_details.items %}
+                    <li class="list-group-item">
+                        <strong>{{ key }}:</strong> {{ value }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+    }
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+    .card {
+        border: none;
+    }
+    .card .list-group-item {
+        border: none;
+        padding: 15px 20px;
+    }
+</style>
+
+{% endblock content %}

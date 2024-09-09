@@ -1,0 +1,25 @@
+{% extends "supplier_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h1 class="text-center mb-4">Low Stock Notifications</h1>
+            <ul class="list-group">
+                {% for product in low_stock_notifications %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ product.product_name }}
+                    <span>
+                        <strong>Current Stock:</strong> {{ product.stock_quantity }} &nbsp;
+                        <strong>Reorder Level:</strong> {{ product.reorder_level }}
+                    </span>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No low stock notifications.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

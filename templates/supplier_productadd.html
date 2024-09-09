@@ -1,0 +1,132 @@
+{% extends "supplier_base.html" %} 
+{% load widget_tweaks %}
+{% load static %}
+
+{% block content %}
+<div class="registration-box">
+    <h2>Add Product</h2>
+    <form method="post" enctype="multipart/form-data" id="product-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_subcategory">Subcategory:</label>
+            {% render_field form.subcategory class="form-control" %}
+            <span class="text-danger">*</span>
+        </div>
+        <div class="form-group">
+            <label for="id_product_name">Product Name:</label>
+            {% render_field form.product_name class="form-control" %}
+            <span class="text-danger">*</span>
+        </div>
+        <div class="form-group">
+            <label for="id_company_name">Company Name:</label>
+            {% render_field form.company_name class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_bike_name">Bike Name:</label>
+            {% render_field form.bike_name class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_product_size">Product Size:</label>
+            {% render_field form.product_size class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Description:</label>
+            {% render_field form.description class="form-control" %}
+            <span class="text-danger">*</span>
+        </div>
+        <div class="form-group">
+            <label for="id_selling_price">Selling Price:</label>
+            {% render_field form.selling_price class="form-control" %}
+            <span class="text-danger">{{ form.selling_price.errors }}</span>
+        </div>
+        <div class="form-group">
+            <label for="id_original_price">Original Price:</label>
+            {% render_field form.original_price class="form-control" %}
+            <span class="text-danger">{{ form.original_price.errors }}</span>
+        </div>
+        <div class="form-group">
+            <label for="id_stock_quantity">Stock Quantity:</label>
+            {% render_field form.stock_quantity class="form-control" %}
+            <span class="text-danger">{{ form.stock_quantity.errors }}</span>
+        </div>
+        <div class="form-group">
+            <label for="id_reorder_level">Reorder Level:</label>
+            {% render_field form.reorder_level class="form-control" %}
+            <span class="text-danger">*</span>
+        </div>
+        <div class="form-group">
+            <label for="id_availability">Availability:</label>
+            {% render_field form.availability class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_product_image1">Product Image 1:</label>
+            {% render_field form.product_image1 class="form-control" %}
+            <span class="text-danger">*</span>
+        </div>
+        <div class="form-group">
+            <label for="id_product_image2">Product Image 2:</label>
+            {% render_field form.product_image2 class="form-control" %}
+            <span class="text-danger">*</span>
+        </div>
+        <div class="form-group">
+            <label for="id_best_seller">Best Seller:</label>
+            {% render_field form.best_seller class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_weight">Weight:</label>
+            {% render_field form.weight class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_material_type">Material Type:</label>
+            {% render_field form.material_type class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_warranty_features">Warranty Features:</label>
+            {% render_field form.warranty_features class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_color">Color:</label>
+            {% render_field form.color class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_is_featured">Is Featured:</label>
+            {% render_field form.is_featured class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_feature1">Feature 1:</label>
+            {% render_field form.feature1 class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_feature2">Feature 2:</label>
+            {% render_field form.feature2 class="form-control" %}
+        </div>
+        <div class="form-group">
+            <label for="id_feature3">Feature 3:</label>
+            {% render_field form.feature3 class="form-control" %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+</div>
+
+<script>
+    // Basic client-side validation
+    document.getElementById('product-form').addEventListener('submit', function(event) {
+        var subcategory = document.getElementById('id_subcategory').value;
+        var productName = document.getElementById('id_product_name').value;
+        var description = document.getElementById('id_description').value;
+        var sellingPrice = document.getElementById('id_selling_price').value;
+        var originalPrice = document.getElementById('id_original_price').value;
+        var stockQuantity = document.getElementById('id_stock_quantity').value;
+        var reorderLevel = document.getElementById('id_reorder_level').value;
+        var productImage1 = document.getElementById('id_product_image1').value;
+        var productImage2 = document.getElementById('id_product_image2').value;
+        // Perform validation for other required fields similarly
+        
+        if (!subcategory || !productName || !description || !sellingPrice || !originalPrice || !stockQuantity || !productImage1 || !productImage2) {
+            event.preventDefault(); // Prevent form submission if required fields are empty
+            alert('Please fill in all required fields.');
+        }
+    });
+</script>
+    {% endblock content %}

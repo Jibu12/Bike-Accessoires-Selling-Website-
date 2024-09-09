@@ -1,0 +1,34 @@
+<!-- all_suppliers.html -->
+
+{% extends "admin_base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4"><strong>All Suppliers</strong></h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Location</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Registration Date</th>
+                    <th>Last Login</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for supplier in suppliers %}
+                <tr>
+                    <td>{{ supplier.company_name }}</td>
+                    <td>{{ supplier.location }}</td>
+                    <td>{{ supplier.email }}</td>
+                    <td>{{ supplier.phone_number }}</td>
+                    <td>{{ supplier.registration_date }}</td>
+                    <td>{{ supplier.last_login }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
